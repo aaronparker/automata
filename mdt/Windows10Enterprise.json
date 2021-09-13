@@ -1,0 +1,12 @@
+{
+    "Description": "Project Automata",
+    "OsLabel": "Windows 10",
+    "Edition": "Enterprise",
+    "Release": "21H1",
+    "Architecture": "x64",
+    "Organisation": "stealthpuppy",
+    "ShortEdition": "ENT",
+    "TsTemplate": "client.xml",
+    "Comments": "",
+    "Version": "1.0"
+}
