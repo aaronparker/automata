@@ -4,7 +4,7 @@
 #>
 [CmdletBinding()]
 Param (
-    $MDTBootISO = "[ILIO DataStore] ISOs/MDT/KelwayLiteTouchPE_x86.iso",
+    $MDTBootISO = "[ILIO DataStore] ISOs/MDT/LiteTouchPE_x86.iso",
     $TargetVM_OSName = "W7X86T1",
     $TaskSequenceID = "W2K8R2S-RDS",
     $MachineObjectOU = "OU=XenApp 6.5,OU=Desktop Virtualization,DC=UCS-POC,DC=CO,DC=UK",
@@ -38,7 +38,7 @@ If ($Null -ne $VM) {
 
 # Create a VM from a template
 $params = @{
-    VMHost    = "k-poc-stealth02.ucs-poc.co.uk"
+    VMHost    = "vmhost"
     Template  = $VMTemplate
     Name      = $TargetVM_Name
     Datastore = "ILIO_FAST"
