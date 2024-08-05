@@ -2,31 +2,31 @@
     "Publishers": {
         "Microsoft": {
             "MicrosoftFSLogixApps": {
-                "Filter": "Get-EvergreenApp -Name \"MicrosoftFSLogixApps\" | Where-Object { $_.Channel -eq \"Production\" } | Select-Object -First 1",
+                "Filter": "Get-EvergreenApp -Name MicrosoftFSLogixApps",
                 "ShortName": "FSLogix Apps",
                 "Language": "en-US",
                 "Command": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1"
             },
             "MicrosoftEdge": {
-                "Filter": "Get-EvergreenApp -Name \"MicrosoftEdge\" | Where-Object { $_.Architecture -eq \"x64\" -and $_.Channel -eq \"Stable\" -and $_.Release -eq \"Enterprise\" } | Sort-Object -Property \"Version\" -Descending | Select-Object -First 1",
+                "Filter": "Get-EvergreenApp -Name MicrosoftEdge | Where-Object { $_.Architecture -eq \"x64\" -and $_.Channel -eq \"Stable\" -and $_.Release -eq \"Enterprise\" }",
                 "ShortName": "Edge",
                 "Language": "en-US",
                 "Command": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1"
             },
             "MicrosoftOneDrive": {
-                "Filter": "Get-EvergreenApp -Name \"MicrosoftOneDrive\" | Where-Object { $_.Ring -eq \"Production\" -and $_.Type -eq \"Exe\" -and $_.Architecture -eq \"AMD64\" } | Sort-Object -Property @{ Expression = { [System.Version]$_.Version }; Descending = $true } | Select-Object -First 1",
+                "Filter": "Get-EvergreenApp -Name MicrosoftOneDrive | Where-Object { $_.Ring -eq \"Production\" -and $_.Type -eq \"Exe\" -and $_.Architecture -eq \"x64\" -and $_.Throttle -eq \"100\" }",
                 "ShortName": "OneDrive",
                 "Language": "en-US",
                 "Command": ".\\#Installer /allusers /silent"
             },
             "MicrosoftTeams": {
-                "Filter": "Get-EvergreenApp -Name \"MicrosoftTeams\" | Where-Object { $_.Ring -eq \"General\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+                "Filter": "Get-EvergreenApp -Name MicrosoftTeams | Where-Object { $_.Release -eq \"Enterprise\" -and $_.Architecture -eq \"x64\" } ",
                 "ShortName": "Teams",
                 "Language": "en-US",
                 "Command": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1"
             },
             "Microsoft365Apps": {
-                "Filter": "Get-EvergreenApp -Name \"Microsoft365Apps\" | Where-Object { $_.Channel -eq \"Monthly Enterprise\" } | Select-Object -First 1",
+                "Filter": "Get-EvergreenApp -Name Microsoft365Apps | Where-Object { $_.Channel -eq \"Monthly Enterprise\" }",
                 "ShortName": "365 Apps",
                 "Language": "en-US",
                 "Command": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1",
@@ -38,23 +38,15 @@
         },
         "VMware": {
             "VMwareTools": {
-                "Filter": "Get-EvergreenApp -Name \"VMwareTools\" | Where-Object { $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+                "Filter": "Get-EvergreenApp -Name VMwareTools | Where-Object { $_.Architecture -eq \"x64\" }",
                 "ShortName": "Tools",
                 "Language": "en-US",
-                "Command": ".\\#Installer /S /v \"/qn REBOOT=R ADDLOCAL=ALL REMOVE=Hgfs,ThinPrint,Toolbox,BootCamp,Debug\""
-            }
-        },
-        "Citrix": {
-            "CitrixVMTools": {
-                "Filter": "Get-EvergreenApp -Name \"CitrixVMTools\" | Where-Object { $_.Architecture -eq \"x64\" } | Sort-Object -Property @{ Expression = { [System.Version]$_.Version }; Descending = $true } | Select-Object -First 1",
-                "ShortName": "VMTools",
-                "Language": "en-US",
-                "Command": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1"
+                "Command": ".\\#Installer /S /v /qn REBOOT=R ADDLOCAL=ALL REMOVE=Hgfs,ThinPrint,Toolbox,BootCamp,Debug"
             }
         },
         "Adobe": {
             "AdobeAcrobatReaderDC": {
-                "Filter": "Get-EvergreenApp -Name \"AdobeAcrobatReaderDC\" | Where-Object { $_.Language -eq \"English\" -and $_.Architecture -eq \"x64\" } | Select-Object -First 1",
+                "Filter": "Get-EvergreenApp -Name AdobeAcrobatReaderDC | Where-Object { $_.Language -eq \"English\" -and $_.Architecture -eq \"x64\" }",
                 "ShortName": "Acrobat Reader DC",
                 "Language": "en-US",
                 "Command": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install.ps1"
@@ -62,10 +54,10 @@
         },
         "stealthpuppy": {
             "image-customisations": {
-                "Filter": "[PSCustomObject] @{Version = $(Invoke-RestMethod -Uri \"https://raw.githubusercontent.com/aaronparker/image-customise/main/src/VERSION.txt\" -UseBasicParsing); Filename = \"customise.zip\"; URI = \"https://codeload.github.com/aaronparker/image-customise/zip/refs/heads/main\"}",
+                "Filter": "Get-EvergreenApp -Name stealthpuppyWindowsCustomisedDefaults | Where-Object { $_.Type -eq \"zip\" }",
                 "ShortName": "Image Customisations",
                 "Language": "en-US",
-                "Command": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Invoke-Scripts.ps1",
+                "Command": "powershell.exe -ExecutionPolicy Bypass -NonInteractive -WindowStyle Minimized -File .\\Install-enAU.ps1",
                 "PostImport": {
                     "FilePath": "",
                     "ArgumentList": ""
