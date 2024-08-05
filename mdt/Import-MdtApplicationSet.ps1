@@ -159,7 +159,7 @@ foreach ($Publisher in $Applications.Publishers | Get-Member -MemberType "NotePr
                     try {
                         Write-Host -ForegroundColor "Cyan" -Object "Copy: $Source to $Destination."
                         $params = @{
-                            Path        = $Source
+                            Path        = $(Join-Path -Path $Source -ChildPath $($App.Name))
                             Destination = $Destination
                             Filter      = "*"
                             Container   = $false
@@ -204,7 +204,7 @@ foreach ($Publisher in $Applications.Publishers | Get-Member -MemberType "NotePr
 Write-Host -ForegroundColor "Cyan" -Object "Importing Microsoft Visual C++ Redistributables."
 $VcPath = Join-Path -Path $DownloadPath -ChildPath "VcRedists"
 New-Item -Path $VcPath -ItemType "Directory" -ErrorAction "SilentlyContinue" | Out-Null
-Get-VcList | Save-VcList -Path $VcPath | Import-VcMdtApplication -MdtPath $DeploymentShare -Silent
+Get-VcList | Save-VcRedist -Path $VcPath | Import-VcMdtApplication -MdtPath $DeploymentShare -Silent
 New-VcMdtBundle -MdtPath $DeploymentShare
 #endregion
 
