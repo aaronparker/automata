@@ -154,7 +154,7 @@ foreach ($Publisher in $Applications.Publishers | Get-Member -MemberType "NotePr
 
             #region Copy additional files
             $Destination = $([System.IO.Path]::Combine($DeploymentShare, "Applications", $Publisher.Name, $($Properties.ShortName -replace " "), $AppUpdate.Version))
-            if (Test-Path -Path $Source) {
+            if (Test-Path -Path $(Join-Path -Path $Source -ChildPath $($App.Name))) {
                 if (Test-Path -Path $Destination) {
                     try {
                         Write-Host -ForegroundColor "Cyan" -Object "Copy: $Source to $Destination."
